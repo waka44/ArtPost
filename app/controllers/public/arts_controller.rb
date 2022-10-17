@@ -19,6 +19,7 @@ class Public::ArtsController < ApplicationController
 
   def show
       @art = Art.find(params[:id])
+      @customer = Customer.find(params[:id])
   end
 
   def edit
@@ -34,6 +35,7 @@ class Public::ArtsController < ApplicationController
   def destroy
       art = Art.find(params[:id])
       art.destroy
+    #イラスト一覧ページ
       redirect_to arts_path
   end
   
