@@ -1,0 +1,22 @@
+<h1>イラスト投稿</h1>
+<% if @art.errors.any? %>
+    <p>投稿情報を入力してください。</p>
+    <ul>
+        <% @art.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with model: @art, url: arts_path do |f| %>
+
+    <!--画像投稿-->
+    <%= f.file_field :image, accept: "image/*" %><br>
+    
+    <!--タイトル-->
+    <%= f.text_field :title %><br>
+
+    <!--説明-->
+    <%= f.text_area :body %><br>
+
+    <%= f.submit '投稿' %>
+<% end %>

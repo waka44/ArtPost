@@ -1,0 +1,10 @@
+<h1>イラスト一覧</h1>
+
+<% @arts.each do |art| %>
+
+<!--画像-->
+<%= image_tag art.image, size: "200x200" %><br>
+<!--タイトル-->
+<%= link_to art.title, art_path(art.id) %>
+
+<% end %>

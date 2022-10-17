@@ -1,0 +1,15 @@
+<h1>投稿編集</h1>
+　<%= form_with model: @art, url: art_path(@art.id), method: :patch do |f| %>
+　
+　<!--イラスト（編集不可）-->
+　<%= image_tag @art.image, size: "auto" %>
+　
+　<h4>タイトル</h4>
+　<%= f.text_field :title %><br>
+　
+　<h4>説明</h4>
+　<%= f.text_area :body %><br>
+　
+　<%= f.submit '更新' %>
+　
+<% end %>

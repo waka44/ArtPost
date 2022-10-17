@@ -1,0 +1,16 @@
+<!--投稿詳細-->
+
+<!--タイトル-->
+<h1><%= @art.title %></h1>
+
+<!--イラスト-->
+<%= image_tag @art.image, size: "auto" %>
+
+<!--投稿者ネーム-->
+
+<!--説明-->
+<p><%= @art.body %></p>
+
+<!--編集-->
+<%= link_to "編集", edit_art_path(@art.id) %>
+<%= link_to "削除", art_path(@list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
