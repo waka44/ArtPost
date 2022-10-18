@@ -15,3 +15,22 @@
 <!--編集-->
 <%= link_to "編集", edit_art_path(@art.id) %>
 <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<!--コメント機能-->
+<div>
+    <p>コメント件数：<%= @art.art_comment.count %></p>
+    <% @art.art_comments.each do |art_comment| %>
+        <%= art_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= art_comment.comment %>
+        
+        <!--コメント削除-->
+        <% if art_coment.customer == current_customer %>
+            <%= link_to "削除", art_art_comment_path(art_comment.art, art_comment), method: :delete %>
+    <% end %>
+</div>
+<div>
+    <%= form_with model: [@art, @art_comment] do |f| %>
+        <%= f.text_area :comment, rows: '5',  placeholder: "コメントをここに" %>
+        <%= f.submit "送信する"　%>
+    <% end %>
+</div>

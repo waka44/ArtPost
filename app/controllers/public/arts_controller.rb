@@ -20,6 +20,7 @@ class Public::ArtsController < ApplicationController
   def show
       @art = Art.find(params[:id])
       @customer = Customer.find(params[:id])
+      @art_comment = ArtComment.new
   end
 
   def edit
