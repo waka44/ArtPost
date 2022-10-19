@@ -27,6 +27,7 @@ scope module: :public do
   resources :arts ,   only: [:new, :index, :show, :edit, :create, :destroy, :update] do
     resources :art_comments, only: [:create, :destroy]
   end
+  resources :favorites,only: [:create, :destroy]
   resources :customers,only: [:show, :edit, :update]
 end
   

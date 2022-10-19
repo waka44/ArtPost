@@ -5,7 +5,7 @@ class Public::ArtsController < ApplicationController
   
   def create
       @art = Art.new(art_params)
-      @art.customer_id = current_customer
+      @art.customer_id = current_customer.id
       if @art.save
         redirect_to art_path(@art.id)
       else
@@ -19,7 +19,7 @@ class Public::ArtsController < ApplicationController
 
   def show
       @art = Art.find(params[:id])
-      @customer = Customer.find(params[:id])
+      @customer = current_customer
       @art_comment = ArtComment.new
   end
 
