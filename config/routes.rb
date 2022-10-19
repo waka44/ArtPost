@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+  end
+  namespace :public do
+    get 'customer/show'
+    get 'customer/edit'
+  end
   # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -16,9 +24,11 @@ scope module: :public do
     
   root to: "homes#top"
     
-  resources :customers,only: [:show, :edit]
   resources :arts ,   only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+    resources :art_comments, only: [:create, :destroy]
   end
+  resources :favorites,only: [:create, :destroy]
+  resources :customers,only: [:show, :edit, :update]
 end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

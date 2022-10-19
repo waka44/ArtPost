@@ -1,0 +1,20 @@
+<div>
+    <!--ニックネーム-->
+    <h1><%= @customer.name %></h1>
+    <!--プロフィール文-->
+    <h4><%= @customer.body %></h4>
+    <!--編集リンク-->
+    <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+</div>
+
+<!--ユーザの投稿一覧-->
+<% @arts.each do |art| %>
+<div>
+    <!--画像-->
+    <p><%= image_tag art.image, size: "200x200" %></p>
+    <!--タイトル-->
+    <p><%= art.title %></p>
+    <!--コメント数-->
+    <p><%= link_to "#{art.art_comments.count}コメント", art_path(art.id) %></p>
+</div>
+<% end %>
