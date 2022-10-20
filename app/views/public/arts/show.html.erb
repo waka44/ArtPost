@@ -7,17 +7,19 @@
     <%= image_tag @art.image, size: "auto" %>
 
     <!--投稿者ネーム-->
-    <%= link_to @art.customer.name, customer_path(@customer.id) %>
+    <%= link_to @art.customer.name, customer_path(@art.customer.id) %>
 
     <!--説明-->
     <p><%= @art.body %></p>
 </div>
 
 <!--編集-->
-<% if @art.customer == current_customer %>
-    <%= link_to "編集", edit_art_path(@art.id) %>
-    <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+<div>
+    <% if @art.customer == current_customer %>
+        <%= link_to "編集", edit_art_path(@art.id) %>
+        <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+</div>
 
 <!--コメント機能-->
 <div>
@@ -28,24 +30,31 @@
         <%= art_comment.comment %>
         
         <!--コメント削除-->
-        <% if art_coment.customer == current_customer %>
+        <% if art_comment.customer == current_customer %>
             <%= link_to "削除", art_art_comment_path(art_comment.art, art_comment), method: :delete %>
+        <% end %>
     <% end %>
 </div>
+<!--コメント投稿-->
 <div>
     <%= form_with model: [@art, @art_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5',  placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
     <% end %>
+</div>
+
+<!--いいね機能-->
+<div>   
     <% if @art.favorited_by?(current_customer) %>
     <p>
-        <%= link_to favorite_path(@art), method: :delete do %>
+        <%= link_to favorites_path(@art), method: :delete do %>
         ♥<%= @art.favorites.count %>いいね
         <% end %>
     </p>
     <% else %>
     <p>
-        <%= link_to art_favories.count %>いいね
+        <%= link_to favorites_path(@art), method: :post do %>
+        ♡<%= @art.favorites.count %>いいね
         <% end %>
     </p>
     <% end %>
