@@ -3,7 +3,7 @@ class Public::FavoritesController < ApplicationController
     def create
         art = Art.find(params[:art_id])
         favorite = current_customer.favorites.new(art_id: art.id)
-        favorites.save
+        favorite.save
         redirect_to art_path(art)
     end
     
