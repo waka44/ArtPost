@@ -8,13 +8,4 @@
 </div>
 
 <!--ユーザの投稿一覧-->
-<% @arts.each do |art| %>
-<div>
-    <!--画像-->
-    <p><%= image_tag art.image, size: "200x200" %></p>
-    <!--タイトル-->
-    <p><%= art.title %></p>
-    <!--コメント数-->
-    <p><%= link_to "#{art.art_comments.count}コメント", art_path(art.id) %></p>
-</div>
-<% end %>
+<%= render 'public/arts/index', arts: @arts %>

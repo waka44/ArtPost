@@ -14,7 +14,7 @@ class Public::ArtsController < ApplicationController
   end
 
   def index
-      @arts = Art.all
+      @arts = Art.page(params[:page])
   end
 
   def show

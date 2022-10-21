@@ -252,7 +252,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   jbuilder (~> 2.7)
-  kaminari
+  kaminari (~> 1.2.1)
   listen (~> 3.3)
   net-smtp
   pry-rails

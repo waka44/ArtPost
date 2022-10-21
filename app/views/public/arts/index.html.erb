@@ -1,19 +1,2 @@
 <h1>イラスト一覧</h1>
-
-<% @arts.each do |art| %>
-
-<div>
-    <!--タイトル-->
-    <p><%= art.title %></p>
-    
-    <!--画像-->
-    <p>
-    <%= link_to art_path(art.id) do %>
-    <%= image_tag art.image, size: "200x200" %>
-    <% end %>
-    </p>
-    
-    <!--コメント数-->
-    <p><%= link_to "#{art.art_comments.count}コメント", art_path(art.id) %></p>
-</div>
-<% end %>
+<%= render 'index', arts: @arts %>
