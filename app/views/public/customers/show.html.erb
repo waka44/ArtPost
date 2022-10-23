@@ -1,11 +1,14 @@
-<div>
-    <!--ニックネーム-->
-    <h1><%= @customer.name %></h1>
-    <!--プロフィール文-->
-    <h4><%= @customer.body %></h4>
-    <!--編集リンク-->
-    <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+<div class = "container">
+    <div　class = "table  table-inverse">
+        <!--ニックネーム-->
+        <h1><%= @customer.name %></h1>
+        <!--プロフィール文-->
+        <h4><%= @customer.body %></h4>
+        <!--編集リンク-->
+        <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+        <div class = "row">
+            <!--ユーザの投稿一覧-->
+            <%= render 'public/arts/index', arts: @arts %>
+        </div>
+    </div>
 </div>
-
-<!--ユーザの投稿一覧-->
-<%= render 'public/arts/index', arts: @arts %>

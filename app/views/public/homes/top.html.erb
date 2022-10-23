@@ -1,18 +1,21 @@
 <div class = "container">
-<h1>Art Post</h1>
-<p>
-    あなたのイラストを投稿して応援したり<br>
-    他の投稿者を応援しましょう！！
-</p>
-<div class = "row">
-<% @arts.each do |art| %>
-
-<div　class = "col-lg-2">
-    <!--画像-->
+    <h1>Art Post</h1>
     <p>
-    <%= image_tag art.image, size: "200x200" %>
+        あなたのイラストを投稿して応援したり<br>
+        他の投稿者を応援しましょう！！
     </p>
-</div>
-<% end %>
-</div>
+    
+    <div　class = "table  table-inverse">
+        <div class = "row">
+            <% @arts.each do |art| %>
+
+
+                <!--画像-->
+                <p>
+                <%= image_tag art.image, size: "200x200" %>
+                </p>
+
+            <% end %>
+        </div>
+    </div>
 </div>

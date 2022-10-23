@@ -1,7 +1,6 @@
+
 <!--投稿詳細-->
 <div class = "container">
-    <div class = "row">
-        <table class = "table table-striped" >
             <!--タイトル-->
             <h1><%= @art.title %></h1>
 
@@ -20,10 +19,8 @@
                 <%= link_to "編集", edit_art_path(@art.id) %>
                 <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
             <% end %>
-        </table>
-    </div>
-</div>
-
+        
+<table class = "table table-striped" >
 <!--コメント機能-->
 <div>
     <p>コメント件数：<%= @art.art_comments.count %></p>
@@ -38,6 +35,7 @@
         <% end %>
     <% end %>
 </div>
+</table>
 <!--コメント投稿-->
 <div>
     <%= form_with model: [@art, @art_comment] do |f| %>
@@ -61,4 +59,5 @@
         <% end %>
     </p>
     <% end %>
+</div>
 </div>
