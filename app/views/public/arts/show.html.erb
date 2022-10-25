@@ -1,63 +1,60 @@
 
 <!--投稿詳細-->
-<div class = "container">
-            <!--タイトル-->
-            <h1><%= @art.title %></h1>
+<div class = "container px-5 px-sm-0">
+    <!--タイトル-->
+    <h1><%= @art.title %></h1>
 
-            <!--イラスト-->
-            <%= image_tag @art.image, size: "auto" %>
+    <!--イラスト-->
+    <%= image_tag @art.image, size: "auto" %>
 
-            <!--投稿者ネーム-->
-            <%= link_to @art.customer.name, customer_path(@art.customer.id) %>
+    <!--投稿者ネーム-->
+    <h2><%= link_to @art.customer.name, customer_path(@art.customer.id) %></h2>
 
-            <!--説明-->
-            <p><%= @art.body %></p>
+    <!--説明-->
+    <p><%= @art.body %></p>
 
-            <!--編集-->
-            
-            <% if @art.customer == current_customer %>
-                <%= link_to "編集", edit_art_path(@art.id) %>
-                <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <!--編集-->
+    <% if @art.customer == current_customer %>
+        <%= link_to "編集", edit_art_path(@art.id) %>
+        <%= link_to "削除", art_path(@art.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+        
+    <table class = "table table-striped" >
+
+        <!--コメント投稿-->
+    <div>
+        <%= form_with model: [@art, @art_comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+        <% end %>
+    </div>
+    
+    <!--いいね機能-->
+    <div>  
+        <p>
+            <% if @art.favorited_by?(current_customer) %>
+                <%= link_to favorites_path(@art), method: :delete do %>
+                    ♥<%= @art.favorites.count %>いいね
+                <% end %>
+            <% else %>
+                <%= link_to favorites_path(@art), method: :post do %>
+                    ♡<%= @art.favorites.count %>いいね
+                <% end %>
             <% end %>
+        </p>
+    </div>
+    
+        <!--コメント機能-->
+            <p>コメント件数：<%= @art.art_comments.count %></p>
+            <% @art.art_comments.each do |art_comment| %>
+                <%= art_comment.customer.name %>
+                <%= art_comment.created_at.strftime('%Y/%m/%d') %>
+                <%= art_comment.comment %>
         
-<table class = "table table-striped" >
-<!--コメント機能-->
-<div>
-    <p>コメント件数：<%= @art.art_comments.count %></p>
-    <% @art.art_comments.each do |art_comment| %>
-        <%= art_comment.customer.name %>
-        <%= art_comment.created_at.strftime('%Y/%m/%d') %>
-        <%= art_comment.comment %>
-        
-        <!--コメント削除-->
-        <% if art_comment.customer == current_customer %>
-            <%= link_to "削除", art_art_comment_path(art_comment.art, art_comment), class: "btn btn-secondary", method: :delete %>
-        <% end %>
-    <% end %>
-</div>
-</table>
-<!--コメント投稿-->
-<div>
-    <%= form_with model: [@art, @art_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-</div>
-
-<!--いいね機能-->
-<div>   
-    <% if @art.favorited_by?(current_customer) %>
-    <p>
-        <%= link_to favorites_path(@art), method: :delete do %>
-        ♥<%= @art.favorites.count %>いいね
-        <% end %>
-    </p>
-    <% else %>
-    <p>
-        <%= link_to favorites_path(@art), method: :post do %>
-        ♡<%= @art.favorites.count %>いいね
-        <% end %>
-    </p>
-    <% end %>
-</div>
+                <!--コメント削除-->
+                <% if art_comment.customer == current_customer %>
+                    <%= link_to "削除", art_art_comment_path(art_comment.art, art_comment), class: "btn btn-secondary", method: :delete %>
+                <% end %>
+            <% end %>
+    </table>
 </div>
