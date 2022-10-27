@@ -5,17 +5,15 @@
         他の投稿者を応援しましょう！！
     </p>
     
-    <div　class = "table  table-inverse">
-        <div class = "row">
-            <% @arts.each do |art| %>
+    <div class = "row">
+        <% @arts.each do |art| %>
 
 
-                <!--画像-->
-                <p>
-                <%= image_tag art.image, size: "200x200" %>
-                </p>
+            <!--画像-->
+            <p>
+            <%= image_tag art.image, size: "200x200" %>
+            </p>
 
-            <% end %>
-        </div>
+        <% end %>
     </div>
 </div>

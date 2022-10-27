@@ -1,11 +1,15 @@
-<div class = "container">
+<div class = "container px-5 px-sm-0">
     <div　class = "table  table-inverse">
-        <!--ニックネーム-->
-        <h1><%= @customer.name %></h1>
-        <!--プロフィール文-->
-        <h4><%= @customer.body %></h4>
-        <!--編集リンク-->
-        <p><%= link_to "プロフィール編集", edit_customer_path %></p>
+        <div class = "text-center">
+            <!--ニックネーム-->
+            <h1><%= @customer.name %></h1>
+            <!--プロフィール文-->
+            <h4><%= @customer.body %></h4>
+        </div>
+            <div class = "text-right">
+            <!--編集リンク-->
+            <p><%= link_to "プロフィール編集", edit_customer_path, class: "btn btn-info" %></p>
+        </div>
         <div class = "row">
             <!--ユーザの投稿一覧-->
             <%= render 'public/arts/index', arts: @arts %>

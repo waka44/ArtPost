@@ -1,7 +1,6 @@
 class Public::FavoritesController < ApplicationController
     
     def create
-        byebug
         art = Art.find(params[:format])
         favorite = current_customer.favorites.new(art_id: art.id)
         favorite.save
